@@ -3,6 +3,20 @@
  */
 
 var genericResponses = require("../helper/generic_responses");
+var multer = require('multer');
+var storage = multer.diskStorage({
+    destination: function(req, file, cb){
+        cb(null, '../public/img/organization/'+ req.param.id +'/')
+    },
+    filename: function(req, file, cb){
+        cb(null, file.fieldname + '-' + Date.now())
+    }
+});
+
+var upload = multer.({ storage: storage });
+
+var uploadOrganizationPictures = upload.fields([{ name: "cover", maxCount: 1},
+    { name: "gallery", maxCount: 15}]);
 
 module.exports = function(db){
     return {
@@ -22,10 +36,10 @@ module.exports = function(db){
                 }
 
             }).catch(function(error){
-                return genericResponses.databaseCatch(error)
+                return genericResponses.databaseCatch(res, error)
             });
         },
-        getOrganizations: function(req, res){
+        getOrganizations: function(req, res) {
             var organizationId = req.params.id;
             var limit = req.query.limit;
             var offset = req.query.offset;
@@ -38,7 +52,7 @@ module.exports = function(db){
                 limit: limit,
                 offset: offset
             }).then(function(organization){
-                if(organization== null){ return genericResponses.notFound(res) }
+                if(organization == null){ return genericResponses.notFound(res) }
                 else {
                     return res.send({
                         err: false,
@@ -47,7 +61,7 @@ module.exports = function(db){
                 }
 
             }).catch(function(error){
-                return genericResponses.databaseCatch(error)
+                return genericResponses.databaseCatch(res, error)
             });
         },
         addOrganization: function(req, res){
@@ -62,7 +76,38 @@ module.exports = function(db){
                     });
                 })
                 .catch(function(error){
-                    return genericResponses.databaseCatch(error);
+                    return genericResponses.databaseCatch(res, error);
+                });
+        },
+        addOrganizationImages: function(req, res) {
+            var organizationId = req.params.id;
+            db.Organization.findById(organizationId)
+                .then(function(organization){
+                    if(organization == null){
+                        genericResponses.notFound(res);
+                    } else {
+                        uploadOrganizationPictures(req, res, function(error){
+                            if(error){
+                                genericResponses.serverError(res, error)
+                            }else {
+                                //Here I am supposed to write
+                                organization.pictures = {
+                                    cover: "./img/organization/" + organizationId + "/cover.jpg"
+
+                                }
+                            }
+                        }).then(function(organization){
+                            res.status(201).send({
+                                err: false,
+                                result: organization
+                            });
+                        }).catch(function(error){
+                            return genericResponses.databaseCatch(res, error)
+                        });
+                    }
+                })
+                .catch(function(error){
+                    return genericResponses.databaseCatch(res, error)
                 });
         }
     }

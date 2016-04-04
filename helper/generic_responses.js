@@ -13,5 +13,11 @@ module.exports = {
             err: true,
             error: error
         })
+    },
+    serverError: function(res, error){
+        res.status(500).send({
+            err: true,
+            error: error
+        })
     }
 };

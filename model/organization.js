@@ -15,7 +15,8 @@ module.exports = function(sequelize, Sequelize){
             allowNull: false
         },
         description:{
-            type: Sequelize.TEXT()
+            type: Sequelize.TEXT(),
+            allowNull: false
         },
         pictures: {
             type: Sequelize.JSONB()
@@ -37,6 +38,10 @@ module.exports = function(sequelize, Sequelize){
         },
         address_others: {
             type: Sequelize.JSONB()
+        },
+        is_visible: {
+            type: Sequelize.BOOLEAN,
+            defaultValue: false
         }
     });
 
