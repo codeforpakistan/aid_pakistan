@@ -93,7 +93,6 @@ module.exports = function(db){
                                 //Here I am supposed to write
                                 organization.pictures = {
                                     cover: "./img/organization/" + organizationId + "/cover.jpg"
-
                                 }
                             }
                         }).then(function(organization){

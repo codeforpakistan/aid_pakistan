@@ -8,4 +8,29 @@
 * {
     font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif
 }
+.share-buttons{
+    list-style: none;
+    padding: 0;
+}
+
+.share-buttons li{
+    display: inline;
+}
+
+.share-buttons img{
+    width: 40px;
+}
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+nav{
+    background-color: #009688;
+}
+a {
+    color: #009688;
+}
+nav a{
+    color: #ffffff;
+}
 

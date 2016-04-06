@@ -18,4 +18,6 @@ var db = require('./config/sequalize');
 require('./routes')(app, db);
 
 app.listen(port);
+app.use('/public', express.static('public'));
+
 console.log('Express app started on port ' + port);
