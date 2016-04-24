@@ -21,7 +21,3 @@ module.exports = function(sequelize, Sequelize){
     });
     return Achievement;
 };
-
-
-
-

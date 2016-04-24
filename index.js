@@ -7,11 +7,10 @@ var express = require('express');
 var app = express();
 var port = process.env.PORT || 3000;
 
-
 // Bootstrap application settings
 require('./config/express')(app);
 
-// Bootstrap models
+// Bootstrap mdels
 var db = require('./config/sequalize');
 
 // Bootstrap routes

@@ -49,32 +49,33 @@
 </nav>
 
 <!-- Full Page Image Background Carousel Header -->
+<!--
 <header id="myCarousel" class="carousel slide">
-    <!-- Indicators -->
+    &lt;!&ndash; Indicators &ndash;&gt;
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
 
-    <!-- Wrapper for Slides -->
+    &lt;!&ndash; Wrapper for Slides &ndash;&gt;
     <div class="carousel-inner">
         <div class="item active">
-            <!-- Set the first background image using inline CSS below. -->
+            &lt;!&ndash; Set the first background image using inline CSS below. &ndash;&gt;
             <div class="fill" style="background-image:url('http://localhost:3000/public/img/K2.jpg');"></div>
             <div class="carousel-caption">
                 <h2>Caption 1</h2>
             </div>
         </div>
         <div class="item">
-            <!-- Set the second background image using inline CSS below. -->
+            &lt;!&ndash; Set the second background image using inline CSS below. &ndash;&gt;
             <div class="fill" style="background-image:url('http://localhost:3000/public/img/freebird.jpg');"></div>
             <div class="carousel-caption">
                 <h2>Caption 2</h2>
             </div>
         </div>
         <div class="item">
-            <!-- Set the third background image using inline CSS below. -->
+            &lt;!&ndash; Set the third background image using inline CSS below. &ndash;&gt;
             <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Three');"></div>
             <div class="carousel-caption">
                 <h2>Caption 3</h2>
@@ -82,7 +83,7 @@
         </div>
     </div>
 
-    <!-- Controls -->
+    &lt;!&ndash; Controls &ndash;&gt;
     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
         <span class="icon-prev"></span>
     </a>
@@ -91,6 +92,33 @@
     </a>
 
 </header>
+-->
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active">
+            <div class="fill" style="background-image:url('http://localhost:3000/public/img/freebird.jpg');"></div>
+        </div>
+        <div class="carousel-item">
+            <div class="fill" style="background-image:url('http://localhost:3000/public/img/k2.jpg');"></div>
+        </div>
+        <div class="carousel-item">
+            <div class="fill" style="background-image:url('http://localhost:3000/public/img/freebird.jpg');"></div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="icon-prev" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="icon-next" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
 
 <br>
 <!-- Page Content -->
@@ -141,76 +169,73 @@
                 <a class="nav-link" href="#references" role="tab" data-toggle="tab">references</a>
             </li>
         </ul>
-
         <!-- Tab panes -->
         <div class="tab-content">
-            <div role="tabpanel" class="tab-pane fade in active" id="profile">
-                <div class="card col-xs-6 col-sm-4 col-md-3">
-                    <img class="card-img-top img-responsive" src="http://dummyimage.com/250x180/000/fff.jpg" data-src="..." alt="Card image cap">
+            <div role="tabpanel" class="tab-pane fade in active text-xs-center" id="profile">
+                <div class="card col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <img class="card-img-top img-fluid center-block" src="http://dummyimage.com/250x180/000/fff.jpg" data-src="..." alt="Card image cap">
                     <div class="card-block">
                         <h4 class="card-title">Shaukat Khanum</h4>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                 </div>
-                <div class="card col-xs-6 col-sm-4 col-md-3">
-                    <img class="card-img-top img-responsive" src="http://dummyimage.com/250x180/000/fff.jpg" data-src="..." alt="Card image cap">
+                <div class="card col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <img class="card-img-top img-fluid center-block" src="http://dummyimage.com/250x180/000/fff.jpg" data-src="..." alt="Card image cap">
                     <div class="card-block">
                         <h4 class="card-title">Card title</h4>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                 </div>
-                <div class="card col-xs-6 col-sm-4 col-md-3">
-                    <img class="card-img-top img-responsive" src="http://dummyimage.com/250x180/000/fff.jpg" data-src="..." alt="Card image cap">
+                <div class="card col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <img class="card-img-top img-fluid center-block" src="http://dummyimage.com/250x180/000/fff.jpg" data-src="..." alt="Card image cap">
                     <div class="card-block">
                         <h4 class="card-title">Card title</h4>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                 </div>
-                <div class="card col-xs-6 col-sm-4 col-md-3">
-                    <img class="card-img-top img-responsive" src="http://dummyimage.com/250x180/000/fff.jpg" data-src="..." alt="Card image cap">
+                <div class="card col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <img class="card-img-top img-fluid center-block" src="http://dummyimage.com/250x180/000/fff.jpg" data-src="..." alt="Card image cap">
                     <div class="card-block">
                         <h4 class="card-title">Card title</h4>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                 </div>
-                <div class="card col-xs-6 col-sm-4 col-md-3">
-                    <img class="card-img-top img-responsive" src="http://dummyimage.com/250x180/000/fff.jpg" data-src="..." alt="Card image cap">
+                <div class="card col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <img class="card-img-top img-fluid center-block" src="http://dummyimage.com/250x180/000/fff.jpg" data-src="..." alt="Card image cap">
                     <div class="card-block">
                         <h4 class="card-title">Card title</h4>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                 </div>
-                <div class="card col-xs-6 col-sm-4 col-md-3">
-                    <img class="card-img-top img-responsive" src="http://dummyimage.com/250x180/000/fff.jpg" data-src="..." alt="Card image cap">
+                <div class="card col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <img class="card-img-top img-fluid center-block" src="http://dummyimage.com/250x180/000/fff.jpg" data-src="..." alt="Card image cap">
                     <div class="card-block">
                         <h4 class="card-title">Card title</h4>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                 </div>
-                <div class="card col-xs-6 col-sm-4 col-md-3">
-                    <img class="card-img-top img-responsive" src="http://dummyimage.com/250x180/000/fff.jpg" data-src="..." alt="Card image cap">
+                <div class="card col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <img class="card-img-top img-fluid center-block" src="http://dummyimage.com/250x180/000/fff.jpg" data-src="..." alt="Card image cap">
                     <div class="card-block">
                         <h4 class="card-title">Card title</h4>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                 </div>
-                <div class="card col-xs-6 col-sm-4 col-md-3">
-                    <img class="card-img-top img-responsive" src="http://dummyimage.com/250x180/000/fff.jpg" data-src="..." alt="Card image cap">
+                <div class="card col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    <img class="card-img-top img-fluid center-block" src="http://dummyimage.com/250x180/000/fff.jpg" data-src="..." alt="Card image cap">
                     <div class="card-block">
                         <h4 class="card-title">Card title</h4>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                 </div>
-                ...</div>
+            </div>
             <div role="tabpanel" class="tab-pane fade" id="buzz">bbb</div>
             <div role="tabpanel" class="tab-pane fade" id="references">ccc</div>
         </div>
         <button class="col-md-12 col-sm-12 col-xs-12 col-lg-12 btn-default btn-lg">See all organizations</button>
-
     </div>
     <hr>
     <!-- End organizations -->
-
     <div class="row text-center">
 
         <div class="container">

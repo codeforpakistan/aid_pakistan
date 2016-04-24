@@ -6,19 +6,36 @@ var genericResponses = require("../helper/generic_responses");
 module.exports = function(db){
     return {
         addAchievement : function(req, res){
-            var achievement = req.body;
-            db.Achievement.insert(achievement)
-                .then(function(achievement){
-                    return res.status(201).send({
-                        err: false,
-                        result:{
-                            id: achievement.id
-                        }
-                    })
+            var organizationId = req.params.oid;
+            var achievementJSON = req.body;
+            db.Organization.findById(organizationId)
+                .then(function(organization){
+                    if(organization) {
+                        var achievement = db.Achievement.build();
+                        achievement.text= achievementJSON.text;
+                        achievement.type= achievementJSON.type;
+                        console.log(JSON.stringify(achievementJSON));
+                        achievement.save()
+                            .then(function (achievement) {
+                                achievement.setOrganization(organization);
+                                return res.status(201).send({
+                                    err: false,
+                                    result: {
+                                        id: achievement.id
+                                    }
+                                })
+                            })
+                            .catch(function (error) {
+                                return genericResponses.databaseCatch(res, error);
+                            });
+                    } else {
+                        return genericResponses.notFound(res);
+                    }
                 })
                 .catch(function(error){
                     return genericResponses.databaseCatch(res, error);
                 });
+
         },
         deleteAchievement: function(req, res){
             var achievementId = req.params.id;

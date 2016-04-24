@@ -13,7 +13,7 @@ var storage = multer.diskStorage({
     }
 });
 
-var upload = multer.({ storage: storage });
+var upload = multer({ storage: storage });
 
 var uploadOrganizationPictures = upload.fields([{ name: "cover", maxCount: 1},
     { name: "gallery", maxCount: 15}]);
@@ -21,34 +21,29 @@ var uploadOrganizationPictures = upload.fields([{ name: "cover", maxCount: 1},
 module.exports = function(db){
     return {
         getOrganization : function(req, res){
-            var organizationId = req.params.id;
+            var organizationId = req.params.oid;
             db.Organization.findOne({
                 where: {
                     id: organizationId
                 }
             }).then(function(organization){
-                if(organization== null){ return genericResponses.notFound(res) }
+                if( organization== null ){ return genericResponses.notFound(res) }
                 else {
                     return res.send({
                         err: false,
                         result: organization
                     });
                 }
-
             }).catch(function(error){
                 return genericResponses.databaseCatch(res, error)
             });
         },
         getOrganizations: function(req, res) {
-            var organizationId = req.params.id;
             var limit = req.query.limit;
             var offset = req.query.offset;
             if(limit == null) {limit = 10}
             if(offset == null) {offset = 0}
             db.Organization.findAll({
-                where: {
-                    id: organizationId
-                },
                 limit: limit,
                 offset: offset
             }).then(function(organization){
@@ -66,7 +61,7 @@ module.exports = function(db){
         },
         addOrganization: function(req, res){
             var organizationData = req.body;
-            db.Organization.insert(organizationData)
+            db.Organization.create(organizationData)
                 .then(function(organization){
                     res.status(201).send({
                         err: false,

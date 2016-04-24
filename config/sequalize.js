@@ -51,9 +51,9 @@ db.Comment.belongsTo(User, {
 */
 
 sequelize.sync({
-    force: true
+    force:false
 }).then(function(log){
-    console.log("Models configured." );
+    console.log("Models configured." + log );
 }).catch(function(err){
     console.log("bad stuff: ", err);
 });
