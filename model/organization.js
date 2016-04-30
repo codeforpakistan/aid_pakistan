@@ -36,6 +36,9 @@ module.exports = function(sequelize, Sequelize){
         address: {
             type: Sequelize.STRING()
         },
+        city: {
+            type: Sequelize.STRING()
+        },
         address_others: {
             type: Sequelize.JSONB()
         },

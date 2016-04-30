@@ -23,7 +23,7 @@ module.exports = function(app, db){
     app.get('/organization', organization.getOrganizations);
     app.get('/organization/:oid', organization.getOrganization);
     app.post('/organization', organization.addOrganization);
-    app.put('/organization/:oid', organization.addOrganizationImages);
+    app.put('/organization/:oid/image', organization.addOrganizationImages);
     //payment routes
     app.post('/organization/:oid/payment_method/:pid', paymentMethod.addPaymentMethod);
     //achievement routes
