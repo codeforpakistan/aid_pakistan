@@ -27,6 +27,7 @@
     "multer": "^1.1.0",
     "nodemailer": "2.1.0",
     "pg": "^4.5.1",
+    "quickthumb": "0.0.12",
     "sequelize": "^3.19.3",
     "tether": "^1.2.0",
     "winston": "1.0.1"

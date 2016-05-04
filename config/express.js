@@ -8,6 +8,7 @@ var cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var express = require("express");
+var qt = require("quickthumb");
 
 var winston = require('winston');
 var pkg = require('../package.json');
@@ -60,5 +61,7 @@ module.exports = function (app) {
     // cookieParser should be above session
     app.use(cookieParser());
     app.use(cookieSession({ secret: 'secret' }));
-    app.use(express.static('public'));
+    app.use('/public', qt.static(__dirname+'/../public', {
+        type: "resize"
+    }));
 };
