@@ -11,8 +11,8 @@ var Testimonial = require('../model/testimonial');
 const util = require('util');
 
 
-var sequelize = new Sequelize('fund_pakistan', 'usman', 'usman', {
-    host: 'localhost',
+var sequelize = new Sequelize('fund_pakistan', 'ali', 'ali', {
+    host: '127.0.0.1',
     dialect: 'postgres'
 });
 
