@@ -3156,13 +3156,13 @@ and (max-width : 767px)
 and (min-width : 551px){
     
      #portfolio-list li {
-      width: 47%;
+      width: 49.9%;
   }
 }
 
 @media (min-width: 768px) {
   #portfolio-list li {
-      width: 23%;
+      width: 24%;
   }
 }
 @media (min-width: 768px) {
@@ -4051,10 +4051,15 @@ ul.post-meta li, ul.post-meta li a {
 .sidebar .widget-popular-posts .widget-thumb {
 	float: left;
 	margin-right: 8px;
-	border: 3px solid rgba(238, 238, 238, 0);
+	border: 3px solid #eee;
+	border-radius: 2px;
+	-webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -o-border-radius: 2px;
 }
 
 .sidebar .widget-popular-posts .widget-thumb img {
+	width: 65px;
 	height: 65px;
 	opacity: 1;
 	transition: all 0.2s ease-in-out;
