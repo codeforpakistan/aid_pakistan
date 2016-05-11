@@ -8,12 +8,14 @@ var Organization = require('../model/organization');
 var Achievement = require('../model/achievement');
 var PaymentMethod = require('../model/payment_method');
 var Testimonial = require('../model/testimonial');
+var Subscription = require('../model/subscription');
 const util = require('util');
 
 
-var sequelize = new Sequelize('fund_pakistan', 'ali', 'ali', {
-    host: '127.0.0.1',
-    dialect: 'postgres'
+var sequelize = new Sequelize('aidpakistan', 'aidpakistan', 'aidpakistan', {
+    host: 'db-aidpakistan.cz0ihya79yam.us-east-1.rds.amazonaws.com',
+    dialect: 'postgres',
+    port:"5432"
 });
 
 db = {};
@@ -23,8 +25,8 @@ db.Organization = Organization(sequelize, Sequelize);
 db.Achievement = Achievement(sequelize, Sequelize);
 db.PaymentMethod = PaymentMethod(sequelize, Sequelize);
 db.Testimonial = Testimonial(sequelize, Sequelize);
+db.Subscription = Subscription(sequelize, Sequelize);
 
-console.log(util.inspect(db, { showHidden: true, depth: 1 }));
 
 db.User.belongsTo(db.Organization, {
     foreignKey: 'organization_id',
@@ -51,9 +53,9 @@ db.Comment.belongsTo(User, {
 */
 
 sequelize.sync({
-//    force:true
+    force:true
 }).then(function(log){
-    console.log("Models configured." + log );
+    console.log("Models configured." + JSON.stringify(log) );
 }).catch(function(err){
     console.log("bad stuff: ", err);
 });

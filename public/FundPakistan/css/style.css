@@ -5671,3 +5671,25 @@ ul.footer-nav li a:hover {
 .navbar-collapse {
 	max-height: 340px;
 }
+.cta-mail {
+	padding: 50px 0;
+	margin-top: 50px
+}
+.email-subscribe {
+    color: #666fb5;
+    font-size: 13px;
+    font-family: 'Open Sans', sans-serif;
+    border: 1px solid #eee;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -o-border-radius: 2px;
+    outline: none;
+    padding: 7px 14px;
+    display: block;
+    margin-bottom: 10px;
+	transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+}

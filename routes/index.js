@@ -9,6 +9,7 @@ module.exports = function(app, db){
     var organization = require('./../controller/organization')(db);
     var achievement = require('./../controller/achievement')(db);
     var paymentMethod = require('./../controller/payment_method' )(db);
+    var subscription = require('./../controller/subscription')(db);
 
 
     app.get('/', function(req, res){
@@ -29,5 +30,7 @@ module.exports = function(app, db){
     //achievement routes
     app.post('/organization/:oid/achievement/', achievement.addAchievement);
     app.post('/organization/:oid/achievement/:aid', achievement.deleteAchievement);
+    //Subscriptions
+    app.post('/subscribe', subscription.subscribe);
 //    app.get('/membercreate', member.createMember);
 };
