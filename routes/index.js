@@ -10,6 +10,8 @@ module.exports = function(app, db){
     var achievement = require('./../controller/achievement')(db);
     var paymentMethod = require('./../controller/payment_method' )(db);
     var subscription = require('./../controller/subscription')(db);
+    var multiparty = require('connect-multiparty'),
+        multipartyMiddleware = multiparty();
 
 
     app.get('/', function(req, res){
@@ -24,7 +26,7 @@ module.exports = function(app, db){
     app.get('/organization', organization.getOrganizations);
     app.get('/organization/:oid', organization.getOrganization);
     app.post('/organization', organization.addOrganization);
-    app.put('/organization/:oid/image', organization.addOrganizationImages);
+    app.put('/organization/:oid/image', multipartyMiddleware,organization.addOrganizationImages);
     //payment routes
     app.post('/organization/:oid/payment_method/:pid', paymentMethod.addPaymentMethod);
     //achievement routes

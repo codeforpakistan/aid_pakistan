@@ -27,6 +27,7 @@ db.PaymentMethod = PaymentMethod(sequelize, Sequelize);
 db.Testimonial = Testimonial(sequelize, Sequelize);
 db.Subscription = Subscription(sequelize, Sequelize);
 
+console.log(util.inspect(db, { showHidden: true, depth: 1 }));
 
 db.User.belongsTo(db.Organization, {
     foreignKey: 'organization_id',
@@ -55,9 +56,10 @@ db.Comment.belongsTo(User, {
 sequelize.sync({
     force:true
 }).then(function(log){
-    console.log("Models configured." + JSON.stringify(log) );
+    console.log("Models configured." + log );
 }).catch(function(err){
     console.log("bad stuff: ", err);
+    console.log(util.inspect(err, { showHidden: true, depth: 1 }));
 });
 
 module.exports = db;

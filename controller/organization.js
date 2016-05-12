@@ -8,7 +8,19 @@ var Sequelize = require("sequelize");
 var fs = require("fs");
 var _ = require("underscore");
 var path = require("path");
+var fs = require('fs'),
+    S3FS = require('s3fs'),
+    s3fsImpl = new S3FS('aidpakistan-images', {
+        accessKeyId: "AKIAJFPDUZOGCU5BFGHQ",
+        secretAccessKey: "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"
+    });
 
+const util = require('util');
+
+// Create our bucket if it doesn't exist
+s3fsImpl.create();
+
+/*
 var storage = multer.diskStorage({
     destination: function(req, file, cb){
         cb(null, './public/img/organization/'+req.params.oid+ "/")
@@ -21,12 +33,14 @@ var storage = multer.diskStorage({
             cb(null, file.originalname )
         }
     }
-});
+});*/
+/*
 
 var upload = multer({ storage: storage });
 
 var uploadOrganizationPictures = upload.fields([{ name: "cover", maxCount: 1},
     { name: "gallery", maxCount: 15}]);
+*/
 
 module.exports = function(db){
     return {
@@ -114,52 +128,47 @@ module.exports = function(db){
         },
         addOrganizationImages: function(req, res) {
             var organizationId = req.params.oid;
-            /*if(req.body.cover == null && req.body.gallery== null){
+/*            if(req.body.cover == null && req.body.gallery== null){
                 return res.send({
                     err: true,
                     error: "Files not sent"
-                });
-            }*/
-
+             });
+             }*/
+            console.log(util.inspect(req, { showHidden: true, depth: 1 }));
+            console.log((JSON.stringify(req.files)));
             db.Organization.findById(organizationId)
                 .then(function(organization) {
                     if (organization == null) {
                         genericResponses.notFound(res);
                     } else {
                         var directoryName = "./public/img/organization/"+ req.params.oid;
-                        ensureExists(directoryName, function(error){
-                            if(error){
-                                return res.send({
-                                    err: true,
-                                    error: error
+                        console.log(JSON.stringify(req.files));
+                        _.each(req.files, function(file){
+                            console.log(file);
+                            var stream = fs.createReadStream(file.path);
+                            s3fsImpl.writeFile(file.originalFilename, stream).then(function () {
+                                fs.unlink(file.path, function (err) {
+                                    if (err) {
+                                        console.error(err);
+                                    }
+                                });
+                            });
+                        });
+
+                        //Here I am supposed to write
+                        organization.pictures = {
+                            cover: path.join(directoryName, "/cover.jpg"),
+                            gallery:gallery
+                        };
+                        organization.save().then(function(organization){
+                                res.send({
+                                    err: false,
+                                    result: organization
                                 });
                             }
-                            uploadOrganizationPictures(req, res, function (error) {
-                                if (error) {
-                                    console.log("error occured");
-                                    return genericResponses.serverError(res, error)
-                                } else {
-                                    var gallery= _.map(req.files.gallery, function(file){
-                                        return file.path;
-                                    });
-
-                                    //Here I am supposed to write
-                                    organization.pictures = {
-                                        cover: path.join(directoryName, "/cover.jpg"),
-                                        gallery:gallery
-                                    };
-                                    organization.save().then(function(organization){
-                                            res.send({
-                                                err: false,
-                                                result: organization
-                                            });
-                                        }
-                                    ).catch(function(error){
-                                            return genericResponses.databaseCatch(res, error);
-                                        })
-                                }
+                        ).catch(function(error){
+                                return genericResponses.databaseCatch(res, error);
                             })
-                        })
                     }
                 }).catch(function(error){
                     return genericResponses.databaseCatch(res, error)
