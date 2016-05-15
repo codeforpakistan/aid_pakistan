@@ -3,8 +3,8 @@
  */
 
 var genericResponses = require("../helper/generic_responses");
-var multer = require('multer');
 var Sequelize = require("sequelize");
+var Promise = require("bluebird");
 var fs = require("fs");
 var _ = require("underscore");
 var path = require("path");
@@ -21,85 +21,93 @@ const util = require('util');
 s3fsImpl.create();
 
 /*
-var storage = multer.diskStorage({
-    destination: function(req, file, cb){
-        cb(null, './public/img/organization/'+req.params.oid+ "/")
-    },
-    filename: function(req, file, cb){
-        console.log(file);
-        if(file.fieldname == "cover") {
-            cb(null, file.fieldname + '.jpg')
-        } else {
-            cb(null, file.originalname )
-        }
-    }
-});*/
+ var storage = multer.diskStorage({
+ destination: function(req, file, cb){
+ cb(null, './public/img/organization/'+req.params.oid+ "/")
+ },
+ filename: function(req, file, cb){
+ console.log(file);
+ if(file.fieldname == "cover") {
+ cb(null, file.fieldname + '.jpg')
+ } else {
+ cb(null, file.originalname )
+ }
+ }
+ });*/
 /*
 
-var upload = multer({ storage: storage });
+ var upload = multer({ storage: storage });
 
-var uploadOrganizationPictures = upload.fields([{ name: "cover", maxCount: 1},
-    { name: "gallery", maxCount: 15}]);
-*/
+ var uploadOrganizationPictures = upload.fields([{ name: "cover", maxCount: 1},
+ { name: "gallery", maxCount: 15}]);
+ */
 
-module.exports = function(db){
+module.exports = function(db) {
     return {
-        getOrganization : function(req, res){
+        getOrganization: function (req, res) {
             var organizationId = req.params.oid;
 
             db.Organization.findOne({
                 where: {
                     id: organizationId
                 }
-            }).then(function(organization){
-                if( organization== null ){ return genericResponses.notFound(res) }
+            }).then(function (organization) {
+                if (organization == null) {
+                    return genericResponses.notFound(res)
+                }
                 else {
                     return res.send({
                         err: false,
                         result: organization
                     });
                 }
-            }).catch(function(error){
+            }).catch(function (error) {
                 return genericResponses.databaseCatch(res, error)
             });
         },
-        getOrganizations: function(req, res) {
+        getOrganizations: function (req, res) {
             var limit = req.query.limit;
             var offset = req.query.offset;
             var conditions = {};
-            if(req.query.categories != null){
+            if (req.query.categories != null) {
                 var categories = req.query.categories;
-                var categoriesArray = _.map(categories, function(cat){
-                    return  {
+                var categoriesArray = _.map(categories, function (cat) {
+                    return {
                         categories: {
                             $ilike: "%" + cat + "%"
                         }
                     };
                 });
             }
-            if(req.query.name != null){
+            if (req.query.name != null) {
                 conditions.name = {
-                    $ilike: "%"+ req.query.name+"%"
+                    $ilike: "%" + req.query.name + "%"
                 }
             }
-            if(req.query.location != null){
+            if (req.query.location != null) {
                 conditions.city = {
-                    $ilike: "%"+ req.query.location+"%"
+                    $ilike: "%" + req.query.location + "%"
                 };
             }
-            if(limit == null) {limit = 10}
-            if(offset == null) {offset = 0}
+            if (limit == null) {
+                limit = 10
+            }
+            if (offset == null) {
+                offset = 0
+            }
             db.Organization.findAll({
                 where: Sequelize.and(
                     conditions,
                     {
                         $or: categoriesArray
                     }
-            ),
-            limit: limit,
+                ),
+                limit: limit,
                 offset: offset
-            }).then(function(organization){
-                if(organization == null){ return genericResponses.notFound(res) }
+            }).then(function (organization) {
+                if (organization == null) {
+                    return genericResponses.notFound(res)
+                }
                 else {
                     return res.send({
                         err: false,
@@ -107,14 +115,14 @@ module.exports = function(db){
                     });
                 }
 
-            }).catch(function(error){
+            }).catch(function (error) {
                 return genericResponses.databaseCatch(res, error)
             });
         },
-        addOrganization: function(req, res){
+        addOrganization: function (req, res) {
             var organizationData = req.body;
             db.Organization.create(organizationData)
-                .then(function(organization){
+                .then(function (organization) {
                     res.status(201).send({
                         err: false,
                         result: {
@@ -122,55 +130,54 @@ module.exports = function(db){
                         }
                     });
                 })
-                .catch(function(error){
+                .catch(function (error) {
                     return genericResponses.databaseCatch(res, error);
                 });
         },
-        addOrganizationImages: function(req, res) {
+        addOrganizationImages: function (req, res) {
             var organizationId = req.params.oid;
-/*            if(req.body.cover == null && req.body.gallery== null){
-                return res.send({
-                    err: true,
-                    error: "Files not sent"
-             });
-             }*/
-            console.log(util.inspect(req, { showHidden: true, depth: 1 }));
-            console.log((JSON.stringify(req.files)));
+            var directoryName = "https://s3.amazonaws.com/aidpakistan-images/" + req.params.oid;
             db.Organization.findById(organizationId)
-                .then(function(organization) {
+                .then(function (organization) {
                     if (organization == null) {
                         genericResponses.notFound(res);
                     } else {
-                        var directoryName = "./public/img/organization/"+ req.params.oid;
-                        console.log(JSON.stringify(req.files));
-                        _.each(req.files, function(file){
+
+                        console.log(req.files);
+                        var arr = ["organization.js", "user.js"];
+                        Promise.each(arr, function (file) {
                             console.log(file);
-                            var stream = fs.createReadStream(file.path);
-                            s3fsImpl.writeFile(file.originalFilename, stream).then(function () {
+                            var stream = fs.createReadStream(path.join(__dirname ,file));
+                            var filename = req.params.oid + "/" + file;
+                            return s3fsImpl.writeFile(filename, stream).then(function () {
                                 fs.unlink(file.path, function (err) {
                                     if (err) {
                                         console.error(err);
                                     }
                                 });
+                            }).catch(function(err){
+                                genericResponses.databaseCatch(res, err);
                             });
-                        });
+                        }).then(function (done) {
 
-                        //Here I am supposed to write
-                        organization.pictures = {
-                            cover: path.join(directoryName, "/cover.jpg"),
-                            gallery:gallery
-                        };
-                        organization.save().then(function(organization){
-                                res.send({
-                                    err: false,
-                                    result: organization
-                                });
-                            }
-                        ).catch(function(error){
-                                return genericResponses.databaseCatch(res, error);
-                            })
+                            var imagesPath = _.map(req.files, function (file) {
+                                return directoryName + "/" + file.name
+                            });
+                            organization.pictures = organization.pictures.append(imagesPath);
+                            organization.save().then(function (organization) {
+                                    res.send({
+                                        err: false,
+                                        result: organization
+                                    });
+                                }
+                            ).catch(function (error) {
+                                    console.log("This "+ error);
+                                    return genericResponses.databaseCatch(res, error);
+                                })
+                        });
                     }
-                }).catch(function(error){
+                }).catch(function (error) {
+                    console.log("That "+ error);
                     return genericResponses.databaseCatch(res, error)
                 });
         }
@@ -187,4 +194,4 @@ function ensureExists(path, mask, cb) {
             else cb(err); // something else went wrong
         } else cb(null); // successfully created folder
     });
-}
+};
