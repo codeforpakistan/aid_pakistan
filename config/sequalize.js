@@ -27,24 +27,26 @@ db.PaymentMethod = PaymentMethod(sequelize, Sequelize);
 db.Testimonial = Testimonial(sequelize, Sequelize);
 db.Subscription = Subscription(sequelize, Sequelize);
 
-console.log(util.inspect(db, { showHidden: true, depth: 1 }));
+//console.log(util.inspect(db, { showHidden: true, depth: 1 }));
 
 db.User.belongsTo(db.Organization, {
     foreignKey: 'organization_id',
     targetKey: 'id'
 });
-db.Achievement.belongsTo(db.Organization, {
+db.Organization.hasMany(db.Achievement, {
     foreignKey: 'organization_id',
     targetKey: 'id'
 });
-db.PaymentMethod.belongsTo(db.Organization, {
+db.Organization.hasMany(db.PaymentMethod, {
+    foreignKey: 'organization_id',
+    targetKey: 'id',
+    as:'PaymentMethods'
+});
+db.Organization.hasMany(db.Testimonial, {
     foreignKey: 'organization_id',
     targetKey: 'id'
 });
-db.Testimonial.belongsTo(db.Organization, {
-    foreignKey: 'organization_id',
-    targetKey: 'id'
-});
+
 /*
 
 db.Comment.belongsTo(User, {
@@ -54,7 +56,7 @@ db.Comment.belongsTo(User, {
 */
 
 sequelize.sync({
-//   force:true
+   force:true
 }).then(function(log){
     console.log("Models configured." + log );
 }).catch(function(err){

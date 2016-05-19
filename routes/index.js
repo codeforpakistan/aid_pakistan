@@ -28,7 +28,10 @@ module.exports = function(app, db){
     app.post('/organization', organization.addOrganization);
     app.put('/organization/:oid/image',organization.addOrganizationImages);
     //payment routes
-    app.post('/organization/:oid/payment_method/:pid', paymentMethod.addPaymentMethod);
+    app.post('/organization/:oid/payment_method', paymentMethod.addPaymentMethod);
+    //payment routes
+    app.get('/organization/:oid/payment_method', paymentMethod.getPaymentMethods);
+
     //achievement routes
     app.post('/organization/:oid/achievement/', achievement.addAchievement);
     app.post('/organization/:oid/achievement/:aid', achievement.deleteAchievement);
