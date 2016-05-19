@@ -4,7 +4,7 @@
 module.exports = function(sequelize, Sequelize){
     var Subscription = sequelize.define("subscription", {
         id: {
-            type: Sequelize.BIGINT(),
+            type: Sequelize.BIGINT,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true

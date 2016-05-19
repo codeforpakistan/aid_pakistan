@@ -4,13 +4,13 @@
 module.exports = function(sequelize, Sequelize){
     var PaymentMethod = sequelize.define("payment_method", {
         id: {
-            type: Sequelize.BIGINT(),
+            type: Sequelize.BIGINT,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true
         },
         account_methods: {
-            type: Sequelize.JSONB(),
+            type: Sequelize.JSONB,
             allowNull: false
         }
     });
