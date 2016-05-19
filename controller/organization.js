@@ -20,7 +20,6 @@ const util = require('util');
 // Create our bucket if it doesn't exist
 s3fsImpl.create();
 
-/*
  var storage = multer.diskStorage({
  destination: function(req, file, cb){
  cb(null, './public/img/organization/'+req.params.oid+ "/")
@@ -33,14 +32,13 @@ s3fsImpl.create();
  cb(null, file.originalname )
  }
  }
- });*/
-/*
+ });
+
 
  var upload = multer({ storage: storage });
 
  var uploadOrganizationPictures = upload.fields([{ name: "cover", maxCount: 1},
  { name: "gallery", maxCount: 15}]);
- */
 
 module.exports = function(db) {
     return {
