@@ -5668,6 +5668,12 @@ ul.footer-nav li a:hover {
     padding: 100px 0;
 }
 
+.subscribe-email {
+    background: url(../images/parallax/bg-02.jpg) no-repeat;
+    background-attachment: fixed;
+    padding: 100px 0;
+}
+
 .navbar-collapse {
 	max-height: 340px;
 }
