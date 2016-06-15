@@ -9,124 +9,134 @@ var fs = require("fs");
 var _ = require("underscore");
 var path = require("path");
 var fs = require('fs'),
-    S3FS = require('s3fs'),
+  S3FS = require('s3fs'),
     s3fsImpl = new S3FS('aidpakistan-images', {
-        accessKeyId: "AKIAJFPDUZOGCU5BFGHQ",
-        secretAccessKey: "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"
+      accessKeyId: "AKIAJFPDUZOGCU5BFGHQ",
+      secretAccessKey: "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"
     });
-var multer = require("multer");
 
-const util = require('util');
+    var multer = require("multer");
 
-// Create our bucket if it doesn't exist
-s3fsImpl.create();
+    const util = require('util');
 
-var storage = multer.diskStorage({
-  destination: function(req, file, cb){
-    cb(null, './public/img/organization/'+req.params.oid+ "/")
-  },
-  filename: function(req, file, cb){
-    console.log(file);
-    cb(null, file.originalname )
-  }
-});
+    // Create our bucket if it doesn't exist
+    s3fsImpl.create();
+
+    var storage = multer.diskStorage({
+      destination: function(req, file, cb){
+        cb(null, './public/img/organization/'+req.params.oid+ "/")
+      },
+      filename: function(req, file, cb){
+        console.log(file);
+        cb(null, file.originalname )
+      }
+    });
 
 
- var upload = multer({ storage: storage });
+    var upload = multer({ storage: storage });
 
- var uploadOrganizationPictures = upload.fields([ { name: "gallery", maxCount: 15}]);
+    var uploadOrganizationPictures = upload.fields([ { name: "gallery", maxCount: 15}]);
 
-module.exports = function(db) {
-    return {
+    module.exports = function(db) {
+      return {
         getOrganization: function (req, res) {
-            var organizationId = req.params.oid;
+          var organizationId = req.params.oid;
 
-            db.Organization.findOne({
-                where: {
-                    id: organizationId
-                }
-            }).then(function (organization) {
-                if (organization == null) {
-                    return genericResponses.notFound(res)
-                }
-                else {
-                    return res.send({
-                        err: false,
-                        result: organization
-                    });
-                }
-            }).catch(function (error) {
-                return genericResponses.databaseCatch(res, error)
-            });
+          db.Organization.findOne({
+            where: {
+              id: organizationId
+            }
+          }).then(function (organization) {
+            if (organization == null) {
+              return genericResponses.notFound(res)
+            }
+            else {
+              return res.send({
+                err: false,
+                result: organization
+              });
+            }
+          }).catch(function (error) {
+            return genericResponses.databaseCatch(res, error)
+          });
         },
         getOrganizations: function (req, res) {
-            var limit = req.query.limit;
-            var offset = req.query.offset;
-            var conditions = {};
-            if (req.query.categories != null) {
-                var categories = req.query.categories;
-                var categoriesArray = _.map(categories, function (cat) {
-                    return {
-                        categories: {
-                            $ilike: "%" + cat + "%"
-                        }
-                    };
-                });
-            }
-            if (req.query.name != null) {
-                conditions.name = {
-                    $ilike: "%" + req.query.name + "%"
+          var limit = req.query.limit;
+          var offset = req.query.offset;
+          var conditions = {};
+          if (req.query.categories != null) {
+            var categories = req.query.categories;
+            var categoriesArray = _.map(categories, function (cat) {
+              return {
+                categories: {
+                  $ilike: "%" + cat + "%"
                 }
-            }
-            if (req.query.location != null) {
-                conditions.city = {
-                    $ilike: "%" + req.query.location + "%"
-                };
-            }
-            if (limit == null) {
-                limit = 10
-            }
-            if (offset == null) {
-                offset = 0
-            }
-            db.Organization.findAll({
-                where: Sequelize.and(
-                    conditions,
-                    {
-                        $or: categoriesArray
-                    }
-                ),
-                limit: limit,
-                offset: offset
-            }).then(function (organization) {
-                if (organization == null) {
-                    return genericResponses.notFound(res)
-                }
-                else {
-                    return res.send({
-                        err: false,
-                        result: organization
-                    });
-                }
-
-            }).catch(function (error) {
-                return genericResponses.databaseCatch(res, error)
+              };
             });
+          }
+          if (req.query.name != null) {
+            conditions.name = {
+              $ilike: "%" + req.query.name + "%"
+            }
+          }
+          if (req.query.location != null) {
+            conditions.city = {
+              $ilike: "%" + req.query.location + "%"
+            };
+          }
+          if (limit == null) {
+            limit = 10
+          }
+          if (offset == null) {
+            offset = 0
+          }
+          console.log("Categories array" + categoriesArray);
+          if(categoriesArray == undefined){
+            categoriesArray = [{
+              categories: {
+                $ilike: "%"
+              }
+            }]
+          }
+          db.Organization.findAll({
+            where: Sequelize.and(
+              conditions,{
+
+                $or : categoriesArray
+              }
+            ),
+            limit: limit,
+            offset: offset
+          }).then(function (organization) {
+            if (organization == null) {
+              return genericResponses.notFound(res)
+            }
+            else {
+              return res.send({
+                err: false,
+                result: organization
+              });
+            }
+
+          }).catch(function (error) {
+            console.log(error);
+            return genericResponses.databaseCatch(res, error)
+          });
         },
         addOrganization: function (req, res) {
-            var organizationData = req.body;
-            db.Organization.create(organizationData)
-                .then(function (organization) {
-                    res.status(201).send({
-                        err: false,
-                        result: {
-                            id: organization.id
-                        }
-                    });
-                })
-                .catch(function (error) {
-                    return genericResponses.databaseCatch(res, error);
-                });
+          var organizationData = req.body;
+          db.Organization.create(organizationData)
+          .then(function (organization) {
+            res.status(201).send({
+              err: false,
+              result: {
+                id: organization.id
+              }
+            });
+          })
+          .catch(function (error) {
+            return genericResponses.databaseCatch(res, error);
+          });
         },
         addOrganizationImages: function (req, res) {
           var organizationId = req.params.oid;
@@ -182,16 +192,16 @@ error: "Files not sent"
             return genericResponses.databaseCatch(res, error)
           });
         }
-    }};
-    function ensureExists(path, mask, cb) {
-      if (typeof mask == 'function') { // allow the `mask` parameter to be optional
-        cb = mask;
-        mask = 0777;
-      }
-      fs.mkdir(path, mask, function(err) {
-        if (err) {
-          if (err.code == 'EEXIST') cb(null); // ignore the error if the folder already exists
-          else cb(err); // something else went wrong
-        } else cb(null); // successfully created folder
-      });
-    };
+      }};
+      function ensureExists(path, mask, cb) {
+        if (typeof mask == 'function') { // allow the `mask` parameter to be optional
+          cb = mask;
+          mask = 0777;
+        }
+        fs.mkdir(path, mask, function(err) {
+          if (err) {
+            if (err.code == 'EEXIST') cb(null); // ignore the error if the folder already exists
+            else cb(err); // something else went wrong
+          } else cb(null); // successfully created folder
+        });
+      };
