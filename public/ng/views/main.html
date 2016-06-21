@@ -1,3 +1,10 @@
+<!--
+@Author: Muhammad Ali Anjum <ali>
+@Date:   15-Jun-2016 09:25 pm
+@Last modified by:   ali
+@Last modified time: 19-Jun-2016 03:26 pm
+-->
+
 <!-- Start Home Page Slider -->
 <section id="home">
   <!-- Carousel -->
@@ -197,9 +204,9 @@
 
         <!-- Nav Tabs -->
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#tab1" data-toggle="tab"><i class="icon-award-1"></i>All</a></li>
-          <li><a href="#tab2" data-toggle="tab"><i class="icon-beaker"></i>Hospitals</a></li>
-          <li><a href="#tab3" data-toggle="tab"><i class="icon-droplet"></i>Education</a></li>
+          <li class="active"><a ng-click="getOrganisations()" data-toggle="tab"><i class="icon-award-1"></i>All</a></li>
+          <li><a ng-click="getOrganisations('H')" data-toggle="tab"><i class="icon-beaker"></i>Hospitals</a></li>
+          <li><a ng-click="getOrganisations('E')" data-toggle="tab"><i class="icon-droplet"></i>Education</a></li>
         </ul>
 
         <!-- Tab Panels -->
@@ -207,22 +214,22 @@
           <!-- Tab Content 1 -->
           <div class="tab-pane fade in active" id="tab1">
                     <!-- Start Recent Projects Carousel -->
-    <ul id="portfolio-list" data-animated="fadeIn" >
-      <li ng-repeat="organization in organizations">
-        <img src="{{ serviceBase }}{{ organization.pictures.cover }}?dim=350x300" alt="" />
+    <ul id="portfolio-list" data-animated="fadeIn">
+
+       <li ng-repeat="organisation in organisations">
+        <img ng-if="organisation.pictures" src="{{ serviceBase }}{{ organisation.pictures.gallery[0] }}?dim=350x300" alt="" />
         <div class="portfolio-item-content">
-          <span class="header">About {{ organization.name }}</span>
-          <p class="body">{{ organization.description }}</p>
+          <span class="header">About {{ organisation.name }}</span>
+          <p class="body">{{ organisation.description }}</p>
         </div>
 
-        <h4 style="margin-top:10px; ">{{ organization.name }}</h4>
-           <a href="#"><i class="more">+</i></a>
-
+        <h4 style="margin-top:10px; ">{{ organisation.name }}</h4>
+        <a href="#/organisation/{{organisation.id}}"><i class="more">+</i></a>
       </li>
     </ul>
     <!-- End Recent Projects Carousel -->
           <br>
-        <center><a href="#/organisations"><button class="btn btn-system">More Organisations</button></a></center>
+        <center><a href="organisations.html"><button class="btn btn-large btn-system">More Organisations</button></a></center>
 
 
 
@@ -274,182 +281,38 @@
 
 
     </div>
-    </div>
-    </div>
-
-
-
-
-<!-- Start Testimonials Section -->
-<div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8">
-
-        <!-- Start Recent Posts Carousel -->
-        <div class="latest-posts">
-          <h4 class="classic-title"><span>Latest News</span></h4>
-          <div class="latest-posts-classic custom-carousel touch-carousel" data-appeared-items="2">
-
-            <!-- Posts 1 -->
-            <div class="post-row item">
-              <div class="left-meta-post">
-                <div class="post-date"><span class="day">28</span><span class="month">Dec</span></div>
-                <div class="post-type"><i class="fa fa-picture-o"></i></div>
-              </div>
-              <h3 class="post-title"><a href="#">Eidhi needs funds</a></h3>
-              <div class="post-content">
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit. <a class="read-more" href="#">Read More...</a></p>
-              </div>
-            </div>
-
-            <!-- Posts 2 -->
-            <div class="post-row item">
-              <div class="left-meta-post">
-                <div class="post-date"><span class="day">26</span><span class="month">Dec</span></div>
-                <div class="post-type"><i class="fa fa-picture-o"></i></div>
-              </div>
-              <h3 class="post-title"><a href="#">We reached a milestone</a></h3>
-              <div class="post-content">
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit. <a class="read-more" href="#">Read More...</a></p>
-              </div>
-            </div>
-
-            <!-- Posts 3 -->
-            <div class="post-row item">
-              <div class="left-meta-post">
-                <div class="post-date"><span class="day">26</span><span class="month">Dec</span></div>
-                <div class="post-type"><i class="fa fa-picture-o"></i></div>
-              </div>
-              <h3 class="post-title"><a href="#">Iframe Video Post</a></h3>
-              <div class="post-content">
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit. <a class="read-more" href="#">Read More...</a></p>
-              </div>
-            </div>
-
-            <!-- Posts 4 -->
-            <div class="post-row item">
-              <div class="left-meta-post">
-                <div class="post-date"><span class="day">26</span><span class="month">Dec</span></div>
-                <div class="post-type"><i class="fa fa-picture-o"></i></div>
-              </div>
-              <h3 class="post-title"><a href="#">Gallery Post</a></h3>
-              <div class="post-content">
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit. <a class="read-more" href="#">Read More...</a></p>
-              </div>
-            </div>
-
-            <!-- Posts 5 -->
-            <div class="post-row item">
-              <div class="left-meta-post">
-                <div class="post-date"><span class="day">26</span><span class="month">Dec</span></div>
-                <div class="post-type"><i class="fa fa-picture-o"></i></div>
-              </div>
-              <h3 class="post-title"><a href="#">Standard Post without Image</a></h3>
-              <div class="post-content">
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit. <a class="read-more" href="#">Read More...</a></p>
-              </div>
-            </div>
-
-            <!-- Posts 6 -->
-            <div class="post-row item">
-              <div class="left-meta-post">
-                <div class="post-date"><span class="day">26</span><span class="month">Dec</span></div>
-                <div class="post-type"><i class="fa fa-picture-o"></i></div>
-              </div>
-              <h3 class="post-title"><a href="#">Iframe Audio Post</a></h3>
-              <div class="post-content">
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit. <a class="read-more" href="#">Read More...</a></p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-        <!-- End Recent Posts Carousel -->
-
-      </div>
-
-      <div class="col-md-4">
-
-        <!-- Classic Heading -->
-        <h4 class="classic-title"><span>Testimonials</span></h4>
-
-        <!-- Start Testimonials Carousel -->
-        <div class="custom-carousel show-one-slide touch-carousel" data-appeared-items="1">
-          <!-- Testimonial 1 -->
-          <div class="classic-testimonials item">
-            <div class="testimonial-content">
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-            </div>
-            <div class="testimonial-author"><span>John Doe</span> - Customer</div>
-          </div>
-          <!-- Testimonial 2 -->
-          <div class="classic-testimonials item">
-            <div class="testimonial-content">
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-            </div>
-            <div class="testimonial-author"><span>John Doe</span> - Customer</div>
-          </div>
-          <!-- Testimonial 3 -->
-          <div class="classic-testimonials item">
-            <div class="testimonial-content">
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-            </div>
-            <div class="testimonial-author"><span>John Doe</span> - Customer</div>
-          </div>
-        </div>
-        <!-- End Testimonials Carousel -->
-
-      </div>
-    </div>
-  </div>
+</div>
 </div>
 
-<!-- End Testimonials Section -->
 
-<div id="parallax-one" class="parallax" style="background-image:url(images/parallax/bg-02.jpg);">
-  <div class="parallax-text-container-1">
-    <div class="parallax-text-item">
-      <div class="container">
-        <div class="row slidertextback">
-          <div class="col-xs-12 col-sm-3 col-md-3">
-            <div class="counter-item">
-              <i class="fa fa-dollar"></i>
-              <div class="timer" id="item1" data-to="991" data-speed="5000"></div>
-              <h5>Money Raised</h5>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-3 col-md-3">
-            <div class="counter-item">
-              <i class="fa fa-check"></i>
-              <div class="timer" id="item2" data-to="7394" data-speed="5000"></div>
-              <h5>Projects completed</h5>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-3 col-md-3">
-            <div class="counter-item">
-              <i class="fa fa-users"></i>
-              <div class="timer" id="item3" data-to="18745" data-speed="5000"></div>
-              <h5>Volunteers</h5>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-3 col-md-3">
-            <div class="counter-item">
-              <i class="fa fa-male"></i>
-              <div class="timer" id="item4" data-to="8423" data-speed="5000"></div>
-              <h5>Happy clients</h5>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 
 
 <br>
 <br>
+<div class="cta-mail">
+<div class="container text-center">
+  <div class="big-title text-center">
+    <h1>Stay <strong>Updated</strong> with these organisations</h1>
+  </div>
+  <div id="mc_embed_signup " >
+    <form role="form" action="http://startbootstrap.us3.list-manage1.com/subscribe/post?u=531af730d8629808bd96cf489&amp;id=afb284632f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate="">
+      <div class="row" style="">
+        <input type="email" class="center-block email-subscribe col-lg-offset-4 col-lg-6 col-md-offset-4 col-md-6" placeholder="Email" name="email" >
+        <button type="submit" name="subscribe" id="mc-embedded-subscribe" class="btn-system btn-large col-md-4">Subscribe!</button>
+      </div>
+      <div id="mce-responses">
+
+        <div class="response" id="mce-error-response" style="display:none"></div>
+        <div class="response" id="mce-success-response" style="display:none"></div>
+      </div>
+    </form>
+  </div>
+  <!-- End MailChimp Signup Form -->
+</div>
+</div>
+
 <!-- Start Client/Partner Section -->
 <div class="partner">
   <div class="container">
@@ -457,8 +320,7 @@
 
       <!-- Start Big Heading -->
       <div class="big-title text-center">
-        <h1>Our Happy <strong>Clients</strong></h1>
-        <p class="title-desc">Partners We Work With</p>
+        <h1><strong>Organizations</strong> we are working with</h1>
       </div>
       <!-- End Big Heading -->
 
