@@ -2,4 +2,7 @@ Get for payment methods;
 3 Organizations test with complete data;
 Achievement;
 Organization social media platforms;
+-------------
+Update Location for multiple locations;
+
 
