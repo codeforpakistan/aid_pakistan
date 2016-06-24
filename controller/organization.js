@@ -60,12 +60,10 @@ var fs = require('fs'),
             return genericResponses.databaseCatch(res, error)
           });
         },
-        getOrganizations: function (req, res) {
-          var limit = req.query.limit;
-          var offset = req.query.offset;
+        getOrganizations: function (categories, name, location, offset) {
           var conditions = {};
-          if (req.query.categories != null) {
-            var categories = req.query.categories;
+          var limit = 8;
+          if (categories != null) {
             var categoriesArray = _.map(categories, function (cat) {
               return {
                 categories: {
@@ -73,55 +71,41 @@ var fs = require('fs'),
                 }
               };
             });
+          }else {
+            categoriesArray = [];
           }
-          if (req.query.name != null) {
+          if (name != null) {
             conditions.name = {
-              $ilike: "%" + req.query.name + "%"
+              $ilike: "%" + name + "%"
             }
           }
-          if (req.query.location != null) {
+          if (location != null) {
             conditions.city = {
-              $ilike: "%" + req.query.location + "%"
+              $ilike: "%" + location + "%"
             };
-          }
-          if (limit == null) {
-            limit = 10
           }
           if (offset == null) {
             offset = 0
           }
-          console.log("Categories array" + categoriesArray);
-          if(categoriesArray == undefined){
+          console.log("Eaa array" + categoriesArray);
+          if(categoriesArray.length == 0){ 
+            console.log("Empty array" + categoriesArray);
             categoriesArray = [{
               categories: {
                 $ilike: "%"
               }
             }]
           }
-          db.Organization.findAll({
+          console.log(categoriesArray);
+          return db.Organization.findAll({
             where: Sequelize.and(
               conditions,{
-
                 $or : categoriesArray
               }
             ),
             limit: limit,
             offset: offset
-          }).then(function (organization) {
-            if (organization == null) {
-              return genericResponses.notFound(res)
-            }
-            else {
-              return res.send({
-                err: false,
-                result: organization
-              });
-            }
-
-          }).catch(function (error) {
-            console.log(error);
-            return genericResponses.databaseCatch(res, error)
-          });
+          })
         },
         addOrganization: function (req, res) {
           var organizationData = req.body;

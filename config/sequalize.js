@@ -12,8 +12,14 @@ var Subscription = require('../model/subscription');
 const util = require('util');
 
 
-var sequelize = new Sequelize('aidpakistan', 'aidpakistan', 'aidpakistan', {
-    host: 'db-aidpakistan.cz0ihya79yam.us-east-1.rds.amazonaws.com',
+//var sequelize = new Sequelize('aidpakistan', 'aidpakistan', 'aidpakistan', {
+//    host: 'db-aidpakistan.cz0ihya79yam.us-east-1.rds.amazonaws.com',
+//    dialect: 'postgres',
+//    port:"5432"
+//});
+//
+var sequelize = new Sequelize('fund_pakistan', 'postgres', 'uiojkl', {
+    host: 'localhost',
     dialect: 'postgres',
     port:"5432"
 });

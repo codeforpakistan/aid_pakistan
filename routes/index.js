@@ -15,11 +15,27 @@ module.exports = function(app, db){
 
 
     app.get('/', function(req, res){
-        res.json({
-            "result": true
-        });
+      var promiseArray = [
+        organization.getOrganizations(""),
+        organization.getOrganizations("H"),
+        organization.getOrganizations("E"),
+        organization.getOrganizations("W"),
+        organization.getOrganizations("C"),
+        organization.getOrganizations("D")
+      ];
+      Promise.all(promiseArray).then(function(values){
+          console.log(JSON.stringify(values));
+          var data = {
+            all: values[0],
+            health: values[1],
+            education: values[2],
+            women: values[3],
+            children: values[4],
+            disaster: values[5]
+          }
+          res.render('home', data);   // this is the important part
+        })
     });
-
     app.post('/signup', user.signup);
     app.post('/authenticate', user.login);
     //organization routes
