@@ -9,14 +9,22 @@ module.exports = function(sequelize, Sequelize){
       primaryKey: true,
       autoIncrement: true
     },
-    account_detail: {
+    detail: {
       type: Sequelize.STRING,
       allowNull: false
     },
-    account_name: {
+    name: {
       type: Sequelize.STRING,
       allowNull: false
 
+    },
+    image: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    link: {
+      type: Sequelize.STRING,
+      allowNull: false
     }
   });
   return PaymentMethod;

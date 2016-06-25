@@ -48,25 +48,14 @@ module.exports = function(db) {
         return genericResponses.databaseCatch(res, error);
       })
     },
-    getPaymentMethods: function(req,res){
+    getPaymentMethods: function(organizationId){
       console.log(db.Organization.Instance.prototype);
-      var paymentJson = req.body;
-      var organizationId = req.params.oid;
       console.log("organization"+ organizationId);
-      db.Organization.findById(organizationId).then(function(organization){
-        console.log(util.inspect(organization, { showHidden: true, depth: 1 }));
-        organization.getPaymentMethods().then(function(paymentMethods){
-          res.send({
-            err:false,
-            result: paymentMethods
-          });
-        }).catch(function(error){
-          return genericResponses.databaseCatch(res, error);
-        });
-
-      }).catch(function(error){
-        return genericResponses.databaseCatch(res, error);
-      });
+      return db.PaymentMethod.findAll({
+        where: {
+          organization_id: organizationId
+        }
+      })
     }
   };
 }

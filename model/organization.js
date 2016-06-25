@@ -14,6 +14,10 @@ module.exports = function(sequelize, Sequelize){
             type: Sequelize.STRING,
             allowNull: false
         },
+        summary:{
+          type: Sequelize.TEXT,
+          allowNull: false
+        },
         description:{
             type: Sequelize.TEXT,
             allowNull: false
@@ -36,7 +40,7 @@ module.exports = function(sequelize, Sequelize){
         address: {
             type: Sequelize.STRING
         },
-        city: {
+        location: {
             type: Sequelize.STRING
         },
         address_others: {

@@ -39,26 +39,13 @@ var fs = require('fs'),
 
     module.exports = function(db) {
       return {
-        getOrganization: function (req, res) {
-          var organizationId = req.params.oid;
-
-          db.Organization.findOne({
+        getOrganization: function (id) {
+          var organizationId = id;
+          return db.Organization.findOne({
             where: {
               id: organizationId
             }
-          }).then(function (organization) {
-            if (organization == null) {
-              return genericResponses.notFound(res)
-            }
-            else {
-              return res.send({
-                err: false,
-                result: organization
-              });
-            }
-          }).catch(function (error) {
-            return genericResponses.databaseCatch(res, error)
-          });
+          })
         },
         getOrganizations: function (categories, name, location, offset) {
           var conditions = {};
@@ -150,7 +137,7 @@ error: "Files not sent"
                     return genericResponses.serverError(res, error)
                   } else {
                     var gallery= _.map(req.files.gallery, function(file){
-                      return file.path;
+                      return "/"+file.path;
                     });
                     if(organization.pictures != null){
                       gallery = _.union(gallery, organization.pictures.gallery);

@@ -34,24 +34,50 @@ module.exports = function(app, db){
             disaster: values[5]
           }
           res.render('home', data);   // this is the important part
-        })
+      }).catch(function(error){
+        console.error(error);
+        res.render('server_fault');
+      })
     });
+
+    app.get('/organization/:oid', function(req, res){
+      var id = req.params.oid;
+      var promiseArray = [
+        organization.getOrganization(id),
+        paymentMethod.getPaymentMethods(id)
+      ]
+      Promise.all(promiseArray).then(function(values){
+        if(!values[0]){
+          res.render('not_found');
+        } else {
+          console.log("Payment Methods" + JSON.stringify(values[1]));
+          res.render('organization', {
+            organization: values[0],
+            payment_method: values[1]
+          });
+        }
+      }).catch(function(error){
+        console.error(error);
+        res.render('server_fault');
+      });
+    });
+
     app.post('/signup', user.signup);
     app.post('/authenticate', user.login);
     //organization routes
-    app.get('/organization', organization.getOrganizations);
-    app.get('/organization/:oid', organization.getOrganization);
+    app.get('/organisation', organization.getOrganizations);
+    app.get('/organisation/:oid', organization.getOrganization);
     app.post('/organization', organization.addOrganization);
     app.put('/organization/:oid/image',organization.addOrganizationImages);
     //payment routes
     app.post('/organization/:oid/payment_method', paymentMethod.addPaymentMethod);
+
     //payment routes
-    app.get('/organization/:oid/payment_method', paymentMethod.getPaymentMethods);
+    //app.get('/organization/:oid/payment_method', paymentMethod.getPaymentMethods);
 
     //achievement routes
     app.post('/organization/:oid/achievement/', achievement.addAchievement);
     app.post('/organization/:oid/achievement/:aid', achievement.deleteAchievement);
     //Subscriptions
     app.post('/subscribe', subscription.subscribe);
-//    app.get('/membercreate', member.createMember);
 };
