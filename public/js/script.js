@@ -5,7 +5,6 @@ $(window).load(function () {
     "use strict";    
   $('#loader').fadeOut();
 });
-alert("Hello");
 
 $(document).ready(function ($) {
   "use strict";	

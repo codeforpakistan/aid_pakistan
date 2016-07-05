@@ -56,7 +56,7 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <!-- End Toggle Nav Link For Mobiles -->
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="/index">
                     <img alt="" src="/public/images/pak.png">
                 </a>
             </div>
@@ -68,14 +68,19 @@
                 <!-- Start Navigation List -->
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                    <a class="active" href="index.html">Home</a>
+                    <a {{#if page_home }}
+                        class="active"
+                        {{/if }} href="/">Home</a>
                     </li>
-                    <li><a href="about.html">About</a>
+                    <li><a href="/about">About</a>
                     </li>
-                    <li><a href="contact.html">Contact</a>
+                    <li><a href="/contact">Contact</a>
                     </li>
                     <li>
-                    <a href="organisations.html">Organisations</a>
+                    <a {{#if page_organizations}}
+                        class="active" 
+                        {{/if}}
+                        href="/organizations">Organizations</a>
                     </li>
                 </ul>
                 <!-- End Navigation List -->
@@ -85,15 +90,15 @@
         <!-- Mobile Menu Start -->
         <ul class="wpb-mobile-menu">
             <li>
-            <a class="active" href="index.html">Home</a>
+            <a class="active" href="/">Home</a>
             </li>
-            <li><a href="about.html">About</a>
-            </li>
-            <li>
-            <a href="contact.html">Contact</a>
+            <li><a href="/about">About</a>
             </li>
             <li>
-            <a href="organisations.html">Organisations</a>
+            <a href="/contact">Contact</a>
+            </li>
+            <li>
+            <a href="/organizations">Organizations</a>
             </li>
         </ul>
         <!-- Mobile Menu End -->

@@ -214,7 +214,8 @@ input[type="submit"] {
 }
 
 #content {
-	padding: 60px 0;
+	padding: 30px 0;
+    background-color:#f4f6f6;
 }
 
 #content.full-sections {
@@ -574,7 +575,7 @@ ul.social-list li:last-child a i {
 }
 .navbar {
 	margin-bottom: 0;
-	background: #fff;
+	background: #00b255;
 	border: none;
 	border-radius: 0;
     -webkit-border-radius: 0;
@@ -610,7 +611,7 @@ ul.social-list li:last-child a i {
 }
 
 .navbar-default .navbar-nav > li > a {
-	color: #999;
+	color: #f2f2f2;
 	display: block;
     font-size: 14px;
 	font-weight: 300;
@@ -941,7 +942,6 @@ ul.social-list li:last-child a i {
 	font-size: 36px;
 	font-weight: 300;
 	margin-top: 60px;
-	text-transform: uppercase;
     text-align: center;
     color: #555;
 }
@@ -2041,7 +2041,7 @@ ul.icons-list li i {
 
 .tab-content {
 	border: 1px solid #eee;
-	border-top: none;
+    background-color:#fff;
 	padding: 12px 16px;
 }
 
@@ -2188,7 +2188,7 @@ ul.icons-list li i {
 
 /*First Icon Effect */
 .icon-effect-1 {
-	background-color: #0bb586;
+	background-color: #fff;
 	-webkit-transition: color 0.4s;
 	-moz-transition: color 0.4s;
 	transition: color 0.4s;
@@ -3136,7 +3136,7 @@ ul.icons-list li i {
     -o-transition: all 0.5s;
     transition: all 0.5s;
      padding-bottom: 20px;
-     border: 1px solid #0bb586;
+     border: 1px solid #01ab52;
 }
 #portfolio-list li h3{
     background:#fff;
@@ -3775,6 +3775,7 @@ ul.post-meta li, ul.post-meta li a {
 
 .post-share {
 	float: left;
+    width: 100%
 }
 
 .post-share span {
@@ -3965,7 +3966,7 @@ ul.post-meta li, ul.post-meta li a {
 
 .sidebar .widget {
     overflow: hidden;
-    margin-bottom: 50px;
+    margin-bottom: 15px;
 }
 
 .sidebar .widget ul {
@@ -4025,7 +4026,7 @@ ul.post-meta li, ul.post-meta li a {
 	display: block;
 	width: 50px;
 	height: 2px;
-	background-color: #ddd;
+	background-color: #01ab52;
 	margin: 0;
 }
 
@@ -4167,7 +4168,7 @@ footer a:hover {
 	display: block;
 	width: 50px;
 	height: 3px;
-	background-color: #333;
+	background-color: #01ab52;
 	margin: 0;
 }
 
@@ -5255,7 +5256,7 @@ ul.footer-nav li a:hover {
 	background-color: #27bebe;
 }
 .switcher-box .colors-list li a.jade {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 .switcher-box .colors-list li a.red {
 	background-color: #ee3733;
@@ -5690,391 +5691,393 @@ ul.footer-nav li a:hover {
 }
 
 a {
-    color: #0bb586;
+    color: #01ab52;
 }
 
 .accent-color {
-	color: #0bb586;
+	color: #01ab52;
 }
 
 .accent-color-bg {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 
 .top-bar a:hover {
-	color: #0bb586;
+	color: #01ab52;
 }
 
 .section-overlay {
-	background: rgba(11, 181, 134, 0.4);
+	background: #01ab52;
 }
 
 .top-bar.color-bar {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 
 .service-box .read-more {
-	color: #0bb586;
+	color: #01ab52;
 }
 
 a.main-button, input[type="submit"] {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 .slicknav_btn {
-  border-color: #0bb586;
+  border-color: #fff;
 }
 .slicknav_btn:hover {
-  background: #0bb586;
+  background: #f2f2f2;
 }
 .slicknav_menu .slicknav_icon-bar {
-  background: #0bb586;
+  background: #f2f2f2;
 }
 .slicknav_nav a:hover,
 .slicknav_nav .active {
-  color: #0bb586;
+  color: #01ab52;
+
 }
 .navbar-default .navbar-nav > li:hover > a,
 .navbar-default .navbar-nav > li > a.active {
-	color: #0bb586;
+    font-weight:bold;
+	color: #fff;
 }
 
 .dropdown > li:hover > a, .sup-dropdown li:hover > a {
-	color: #0bb586;
+	color: #01ab52;
 }
 
 .navbar-default .navbar-nav > li > a:after {
-	background-color: #0bb586;
+	background-color: #fff;
 }
 
 .navbar-default .navbar-nav > li > a.active, .navbar-default .navbar-nav > li:hover > a {
-	border-color: #0bb586;
+	border-color: #fff;
 }
 
 .dropdown  li a.active, .sup-dropdown li a.active {
-	color: #0bb586;
+	color: #01ab52;
 }
 
 ul.breadcrumbs li a:hover {
-    color: #0bb586;
+    color: #01ab52;
 }
 
 .full-width-recent-projects .portfolio-item:hover .portfolio-thumb .thumb-overlay {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 
 .tp-caption.color-bg {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 
 .team-member .member-socail a.mail:hover i {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 
 .post-share a.mail:hover {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 
 .progress .progress-bar.progress-bar-primary {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 
 .latest-posts-classic .left-meta-post .post-type i {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 
 .latest-posts-classic .post-title a:hover {
-	color: #0bb586;
+	color: #01ab52;
 }
 
 .latest-posts-classic .read-more {
-	color: #0bb586;
+	color: #01ab52;
 }
 
 .panel-title a {
-	color: #0bb586;
+	color: #01ab52;
 }
 
 .panel-title a:hover {
-	color: #0bb586;
+	color: #01ab52;
 }
 
 .milestone-block .milestone-icon {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 
 .milestone-block .milestone-icon:after {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 
 .milestone-block .milestone-number {
-	color: #0bb586;
+	color: #01ab52;
 }
 
 .pricing-tables .pricing-table.highlight-plan .plan-name h3 {
-	//color: #0bb586;
+	//color: #01ab52;
 }
 
 .pricing-tables .pricing-table.highlight-plan .plan-signup {
-    background-color: #0bb586;
+    background-color: #01ab52;
 }
 
 .pricing-tables .pricing-table.highlight-plan .plan-name {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 
 .btn-system {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 
 .btn-system.border-btn {
-	border-color: #0bb586;
-	color: #0bb586;
+	border-color: #01ab52;
+	color: #01ab52;
 }
 
 .btn-system.border-btn:hover {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 
 .btn-system.border-btn.btn-wite:hover {
-	color: #0bb586;
+	color: #01ab52;
 }
 
 .btn-system.btn-wite{
-	color: #0bb586;
+	color: #01ab52;
 }
 
 ul.icons-list li i {
-	color: #0bb586;
+	color: #01ab52;
 }
 
 .nav-tabs > li > a:hover, .nav-tabs > li > a:focus {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover {
-	color: #0bb586;
+	color: #01ab52;
 }
 
 .icon-small {
-	text-shadow: 0 0 0 #0bb586;
+	text-shadow: 0 0 0 #01ab52;
 }
 
 .icon-small:hover, .service-box:hover .icon-small {
-	color: #0bb586;
+	color: #01ab52;
 }
 .icon-medium {
-	text-shadow: 0 0 0 #0bb586;
+	text-shadow: 0 0 0 #01ab52;
 }
 
 .icon-medium:hover, .service-box:hover .icon-medium {
-	color: #0bb586;
+	color: #01ab52;
 }
 
 .icon-large {
-	text-shadow: 0 0 0 #0bb586;
+	text-shadow: 0 0 0 #01ab52;
 }
 
 .icon-large:hover, .service-box:hover .icon-large {
-	color: #0bb586;
+	color: #01ab52;
 }
 
 .icon-effect-1 {
-	box-shadow: 0 0 0 3px #0bb586;
-	-o-box-shadow: 0 0 0 3px #0bb586;
-	-moz-box-shadow: 0 0 0 3px #0bb586;
-  	-webkit-box-shadow: 0 0 0 3px #0bb586;
+	box-shadow: 0 0 0 3px #01ab52;
+	-o-box-shadow: 0 0 0 3px #01ab52;
+	-moz-box-shadow: 0 0 0 3px #01ab52;
+  	-webkit-box-shadow: 0 0 0 3px #01ab52;
 }
 
 .icon-effect-1:after {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 
 .icon-effect-1:hover, .service-box:hover .icon-effect-1 {
-	color: #0bb586;
+	color: #01ab52;
 }
 
 .icon-effect-2 {
-	color: #0bb586;
-	box-shadow: 0 0 0 3px #0bb586;
-	-o-box-shadow: 0 0 0 3px #0bb586;
-	-moz-box-shadow: 0 0 0 3px #0bb586;
-  	-webkit-box-shadow: 0 0 0 3px #0bb586;
+	color: #01ab52;
+	box-shadow: 0 0 0 3px #01ab52;
+	-o-box-shadow: 0 0 0 3px #01ab52;
+	-moz-box-shadow: 0 0 0 3px #01ab52;
+  	-webkit-box-shadow: 0 0 0 3px #01ab52;
 }
 
 .icon-effect-2:after {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 
 .icon-effect-3 {
-	color: #0bb586;
-	box-shadow: 0 0 0 3px #0bb586;
-	-o-box-shadow: 0 0 0 3px #0bb586;
-	-moz-box-shadow: 0 0 0 3px #0bb586;
-  	-webkit-box-shadow: 0 0 0 3px #0bb586;
+	color: #01ab52;
+	box-shadow: 0 0 0 3px #01ab52;
+	-o-box-shadow: 0 0 0 3px #01ab52;
+	-moz-box-shadow: 0 0 0 3px #01ab52;
+  	-webkit-box-shadow: 0 0 0 3px #01ab52;
 }
 
 .icon-effect-4 {
-	color: #0bb586;
-	box-shadow: 0 0 0 3px #0bb586;
-	-o-box-shadow: 0 0 0 3px #0bb586;
-	-moz-box-shadow: 0 0 0 3px #0bb586;
-  	-webkit-box-shadow: 0 0 0 3px #0bb586;
+	color: #01ab52;
+	box-shadow: 0 0 0 3px #01ab52;
+	-o-box-shadow: 0 0 0 3px #01ab52;
+	-moz-box-shadow: 0 0 0 3px #01ab52;
+  	-webkit-box-shadow: 0 0 0 3px #01ab52;
 }
 
 .icon-effect-5 {
-	color: #0bb586;
-	box-shadow: 0 0 0 3px #0bb586;
-	-o-box-shadow: 0 0 0 3px #0bb586;
-	-moz-box-shadow: 0 0 0 3px #0bb586;
-  	-webkit-box-shadow: 0 0 0 3px #0bb586;
+	color: #01ab52;
+	box-shadow: 0 0 0 3px #01ab52;
+	-o-box-shadow: 0 0 0 3px #01ab52;
+	-moz-box-shadow: 0 0 0 3px #01ab52;
+  	-webkit-box-shadow: 0 0 0 3px #01ab52;
 }
 
 .icon-effect-6 {
-	color: #0bb586;
-	box-shadow: 0 0 0 3px #0bb586;
-	-o-box-shadow: 0 0 0 3px #0bb586;
-	-moz-box-shadow: 0 0 0 3px #0bb586;
-  	-webkit-box-shadow: 0 0 0 3px #0bb586;
+	color: #01ab52;
+	box-shadow: 0 0 0 3px #01ab52;
+	-o-box-shadow: 0 0 0 3px #01ab52;
+	-moz-box-shadow: 0 0 0 3px #01ab52;
+  	-webkit-box-shadow: 0 0 0 3px #01ab52;
 }
 
 .team-member .member-photo .member-name span {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 
 .classic-title span {
-	border-bottom-color: #0bb586;
+	border-bottom-color: #01ab52;
 }
 
 .portfolio-filter li a:hover {
-	color: #0bb586;
+	color: #01ab52;
 }
 
 .portfolio-filter li a.selected {
-	border-color: #0bb586;
-	background-color: #0bb586;
+	border-color: #01ab52;
+	background-color: #01ab52;
 }
 
 .portfolio-item:hover .portfolio-details h4 {
-	color: #0bb586;
+	color: #01ab52;
 }
 
 .project-content h4 span {
-	border-bottom-color: #0bb586;
+	border-bottom-color: #01ab52;
 }
 
 .recent-projects h4.title span {
-	border-bottom-color: #0bb586;
+	border-bottom-color: #01ab52;
 }
 
 ul.post-meta li a:hover {
-	color: #0bb586;
+	color: #01ab52;
 }
 
 #pagination span.current {
-	border-color: #0bb586;
-	background-color: #0bb586;
+	border-color: #01ab52;
+	background-color: #01ab52;
 }
 
 #pagination a:hover {
-	color: #0bb586;
+	color: #01ab52;
 }
 
 .post-tags-list a:hover {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 
 .post-share a.mail {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 
 .sidebar a:hover {
-	color: #0bb586;
+	color: #01ab52;
 }
 
 .widget-search .search-btn {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 
 .sidebar .tagcloud a:hover {
-    background-color: #0bb586;
+    background-color: #01ab52;
 }
 
 .back-to-top:hover i {
-    background-color: #0bb586;
+    background-color: #01ab52;
 }
 
 .touch-slider .owl-controls.clickable .owl-buttons div:hover {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 
 .touch-carousel .owl-controls.clickable .owl-buttons div:hover {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 
 .testimonials-carousel .owl-controls.clickable .owl-buttons div {
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 
 .testimonials-carousel .owl-controls.clickable .owl-buttons div:hover i {
-	color: #0bb586;
+	color: #01ab52;
 }
 
 
 #portfolio-list li .portfolio-item-content {
-    background: rgba(11, 181, 134, 0.9);
+    background: #01ab52;
 }
 
 .services-3-icon i {
-    background-color: #0bb586;
+    background-color: #01ab52;
 }
 
 .services-2-icon i {
-    background-color: #0bb586;
+    background-color: #01ab52;
 }
 
 #main-slide .animated2 strong {
-    color: #0bb586;
+    color: #01ab52;
 }
 #main-slide .animated4 strong {
-    color: #0bb586;
+    color: #01ab52;
 }
 #main-slide .animated7 strong {
-    color: #0bb586;
+    color: #01ab52;
 }
 
 #main-slide .carousel-control i:hover{
-	background-color: #0bb586;
+	background-color: #01ab52;
 }
 .slider.btn {
-    background-color: #0bb586;
+    background-color: #01ab52;
 }
 
 #main-slide .carousel-indicators .active {
-    background-color: #0bb586;
+    background-color: #01ab52;
 }
 
 
 .counter-item i {
-    color: #0bb586;
+    color: #01ab52;
 }
 
 .timer {
-    color: #0bb586;
+    color: #01ab52;
 }
 
 .progress-bar {
-    background-color: #0bb586;
+    background-color: #01ab52;
 }
 
 .team-member.modern .member-photo:after {
-    background-color: #0bb586;
+    background-color: #01ab52;
 }
 
 
 .twitter-widget a {
-	color: #0bb586;
+	color: #01ab52;
 }
 
 .dot1, .dot2 {
-    background-color: #0bb586;
+    background-color: #01ab52;
 }

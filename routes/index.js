@@ -10,9 +10,6 @@ module.exports = function(app, db){
     var achievement = require('./../controller/achievement')(db);
     var paymentMethod = require('./../controller/payment_method' )(db);
     var subscription = require('./../controller/subscription')(db);
-//   var multiparty = require('connect-multiparty'),
-//      multipartyMiddleware = multiparty();
-
 
     app.get('/', function(req, res){
       var promiseArray = [
@@ -31,7 +28,8 @@ module.exports = function(app, db){
             education: values[2],
             women: values[3],
             children: values[4],
-            disaster: values[5]
+            disaster: values[5],
+            page_home: true
           }
           res.render('home', data);   // this is the important part
       }).catch(function(error){
@@ -53,7 +51,14 @@ module.exports = function(app, db){
           console.log("Payment Methods" + JSON.stringify(values[1]));
           res.render('organization', {
             organization: values[0],
-            payment_method: values[1]
+            payment_method: values[1],
+            organizations: true,
+            helpers: {
+              alert: function(){
+                alert("Helper");
+                return "12"
+              }
+            }
           });
         }
       }).catch(function(error){
@@ -61,12 +66,43 @@ module.exports = function(app, db){
         res.render('server_fault');
       });
     });
+    app.get('/about/',function(req,res){
+      res.sendfile('views/about.html');
+    });
+    app.get('/contact/',function(req,res){
+      res.sendfile('views/contact.html');
+    });
+    app.get('/organizations/', function(req, res){
+      var category = req.query.category;
+      var name = req.query.name;
+      var offset = req.query.offset;
+      organization.getOrganizations(category, name, null, offset).then(function(organizations){
+        var pagination= {};
+        pagination.current_page = 1;
+        pagination.total_pages = 5;
 
+        res.render('organizations', {
+          organizations: organizations,
+          pagination: pagination,
+          page_organizations: true,
+          helpers: {
+            times: function(n,block){
+              var accum = '';
+              for(var i = 0; i < n; ++i)
+              accum += block.fn(i);
+              return accum;
+            }
+          }
+        });
+      });
+
+    });
+    
     app.post('/signup', user.signup);
     app.post('/authenticate', user.login);
     //organization routes
-    app.get('/organisation', organization.getOrganizations);
-    app.get('/organisation/:oid', organization.getOrganization);
+//  app.get('/organisation', organization.getOrganizations);
+//  app.get('/organisation/:oid', organization.getOrganization);
     app.post('/organization', organization.addOrganization);
     app.put('/organization/:oid/image',organization.addOrganizationImages);
     //payment routes
@@ -80,4 +116,7 @@ module.exports = function(app, db){
     app.post('/organization/:oid/achievement/:aid', achievement.deleteAchievement);
     //Subscriptions
     app.post('/subscribe', subscription.subscribe);
+    app.get('*',function(req, res){
+      res.render('not_found');
+    });
 };

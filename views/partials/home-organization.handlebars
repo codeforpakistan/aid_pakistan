@@ -3,7 +3,7 @@
         <div class="col-md-12">
             <!-- Start Big Heading -->
             <div class="big-title text-center" data-animation="fadeInDown" data-animation-delay="01">
-                <h1>These <strong>Organisations</strong> need your assistance</h1>
+                <h1>These <strong>Organizations</strong> need our help in saving the world</h1>
             </div>
             <!-- End Big Heading -->
 
@@ -25,22 +25,20 @@
                     <ul id="portfolio-list" data-animated="fadeIn">
                         {{#each all}}
                         <li>
-                        <img src={{this.pictures.gallery.[0]}}?dim=250x200  alt="Image not found" onError="this.onerror=null;this.src='http://dummyimage.com/250x200/00bb57/fff.jpg&text=image+not+available';" />
+                        <img src={{{getEncodedURI this.pictures.gallery.[0]}}}?dim=250x200  alt="Image not found" onError="this.onerror=null;this.src='http://dummyimage.com/250x200/00bb57/fff.jpg&text=image+not+available';" />
                         <div class="portfolio-item-content">
                             <span class="header">About {{this.name}}</span>
                             <p class="body">{{this.summary}} </p>
                         </div>
-
                         <h4 style="margin-top:10px; ">{{this.name}}</h4>
-                        <a href="#organization/{{this.id}}"><i class="more">+</i></a>
-
+                        <a href="/organization/{{this.id}}"><i class="more">+</i></a>
                         </li>
                         {{/each}}
 
                     </ul>
                     <!-- End Recent Projects Carousel -->
                     <br>
-                    <center><a href="organisations.html"><button class="btn btn-large btn-system">More Organisations</button></a></center>
+                    <center><a href="/organizations"><button class="btn btn-large btn-system">More Organizations</button></a></center>
 
 
 

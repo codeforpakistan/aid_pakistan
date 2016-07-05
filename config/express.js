@@ -14,16 +14,54 @@ var winston = require('winston');
 var pkg = require('../package.json');
 var env = process.env.NODE_ENV || 'development';
 var exphbs = require('express-handlebars'); 
+var _ = require("underscore");
+
+var hbs = exphbs.create({
+  defaultLayout: "main",
+  // Specify helpers which are only registered on this instance. 
+  helpers: {
+    getCategories: function(characters){
+      var html = "<li>";
+      var categoriesArray = _.map(characters,function(character){
+        console.log(character);
+        switch (character) {
+          case 'H':
+            return '<a href="#">Health, </a>'
+          case 'E': 
+            return '<a href="#">Education, </a>'
+          case 'W':
+            return '<a href="#">Women Protection, </a>'
+          case 'R': 
+            return '<a href="#">Disaster Managment, </a>'
+          case 'C': 
+            return '<a href="#">Children, </a>'
+          case 'D': 
+            return '<a href="#">Disaster Managment, </a>'
+          default:
+            return '<a href="#">Uncategoried, </a>'
+        }
+      });
+      var categoriesHtml = _.reduce(categoriesArray, function(memo, category) {
+        return memo.concat(category) 
+      }, "<li>" ).concat("</li>");
+      return categoriesHtml;
+    },
+    getEncodedURI: function(uri){
+      return encodeURI(uri);
+    }
+  }
+});
 /**
  * Expose
  */
 
 module.exports = function (app) {
 
-  app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-  app.set('view engine', 'handlebars');
 
+  app.engine('handlebars', hbs.engine);
+  app.set('view engine', 'handlebars');  
   // Use winston on production
+
   var log;
   if (env !== 'development') {
     log = {

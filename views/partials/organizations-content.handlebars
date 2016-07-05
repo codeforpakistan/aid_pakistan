@@ -1,0 +1,112 @@
+<!-- Start Content -->
+<div id="content">
+    <div class="container">
+        <div class="row">
+            <!--Sidebar-->
+            <div class="col-md-3 sidebar left-sidebar">
+
+
+                <div class="widget widget-categories tab-content">
+                    <h4>Categories <span class="head-line"></span></h4>
+                    <ul>
+                        <li>
+                        <a href="/organizations?category=H">Health</a>
+                        </li>
+                        <li>
+                        <a href="/organizations?category=E">Education</a>
+                        </li>
+                        <li>
+                        <a href="/organizations?category=D">Minorities</a>
+                        </li>
+                        <li>
+                        <a href="/organizations?category=D">Disaster Recovery</a>
+                        </li>
+                        <li>
+                        <a href="/organizations?category=C">Children</a>
+                        </li>
+                        <li>
+                        <a href="/organizations?category=W">Women Protection</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <!--End sidebar-->
+
+
+            <div class="col-md-9" style="margin-bottom:10px;">
+                <div class="tab-content">
+                    <h2> Search for organizations </h2>
+                    <br>
+                    <!-- Search Widget -->
+                    <div class="widget widget-search">
+                        <form action="/organizations" method="GET">
+                            <input type="search" name="name" placeholder="Search by name" />
+                            <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+            <!-- Start Blog Posts -->
+            <div class="tab-content">
+                {{#each organizations}}
+                <div class="row blog-post">
+                    <div class="col-md-3">
+                        <a href="/organization/{{this.id}}">
+                            <img class="img-responsive" src="{{{getEncodedURI this.pictures.gallery.[0]}}}?dim=250x200" alt="Image not found" onError="this.onerror=null;this.src='http://dummyimage.com/250x200/00bb57/fff.jpg&text=image+not+available';" />
+                        </a>
+                    </div>
+                    <div class="col-md-9">
+                        <!-- Start Service Icon 1 -->
+                        <div class="">
+                            <h2><a href="/organization/{{this.id}}">{{this.name}}</a></h2>
+                            <ul class="post-meta">
+                                <li>{{this.location}}</li>
+                                {{{getCategories this.categories}}}
+                            </ul>
+                            <p>{{this.summary}}.</p>
+                            <a class="main-button" href="/organization/{{this.id}}">Read More <i class="fa fa-angle-right"></i></a>
+                        </div> 
+                    </div>
+                </div>
+                {{else}}
+                <div class="row blog-post">
+                    <div class="col-md-9">
+                        <!-- Start Service Icon 1 -->
+                        <div class="center-block">
+                            <h2>No organization matches the criteria</h2>
+                        </div> 
+                    </div>
+                </div>
+
+                {{/each}}
+
+                {{#if organizations.length }}
+                <!-- Start Pagination -->
+                <div id="pagination">
+                    <a class="next-page" href="#">Previous page</a>
+                    <a class="next-page pull-right" href="#">Next page</a>
+                </div>
+                {{/if}}
+                <!-- End Pagination -->
+
+
+                <!-- End Post -->
+            </div>
+            </div>
+            <!-- End Blog Posts -->
+
+
+            </div>
+        </div>
+        <div class="row">
+
+
+        </div>
+    </div>
+</div>
+<!-- End Content -->
+
+
+
