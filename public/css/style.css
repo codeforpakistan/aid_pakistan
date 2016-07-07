@@ -3796,6 +3796,16 @@ ul.post-meta li, ul.post-meta li a {
 	-o-transition: all 0.2s ease-in-out;
 }
 
+.post-share a.globe {
+	background-color: #01ab52;
+}
+
+.post-share a.globe:hover {
+	background-color: green;
+}
+
+
+
 .post-share a.facebook {
 	background-color: #507CBE;
 }
