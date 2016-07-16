@@ -836,7 +836,9 @@ ul.social-list li:last-child a i {
 /*-- Main slide --*/
 
 #main-slide .item img{
-	width: 100%;
+    min-height: 50vh;
+    object-fit: cover ;
+    overflow: hidden;
 }
 
 #main-slide .item .slider-content {
